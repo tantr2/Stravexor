@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Phuket Construction Site | STRAVEXOR</title>
+
+    <meta name="description"
+          content="STRAVEXOR aerial mapping operation using DJI Matrice 4TD for construction site surveying and high-resolution aerial data acquisition.">
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+    <style>
+
+        /* =========================================================
+           STRAVEXOR PROJECT PAGE
+        ========================================================= */
+
+        :root {
+            --black: #070707;
+            --dark: #0d0d0d;
+            --dark-2: #141414;
+            --white: #f4f4f0;
+            --muted: #969696;
+            --line: rgba(255,255,255,0.12);
+            --accent: #d7ff3f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--black);
+            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 78px;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5vw;
+
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.8),
+                rgba(0,0,0,0)
+            );
+
+            backdrop-filter: blur(5px);
+        }
+
+        .brand img {
+            width: 145px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-project {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.65);
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .project-hero {
+            min-height: 100vh;
+            position: relative;
+
+            display: flex;
+            align-items: flex-end;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,0.90) 0%,
+                    rgba(0,0,0,0.60) 38%,
+                    rgba(0,0,0,0.10) 100%
+                ),
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.95),
+                    transparent 60%
+                ),
+                url("https://raw.githubusercontent.com/tantr2/Stravexor/211ae9fb1197589d6f9152ce48062e1bd1b414f8/projects/Project-1/Screenshot%202026-08-27%20180959.png");
+
+            background-size: cover;
+            background-position: center;
+
+            animation: heroZoom 12s ease-out forwards;
+        }
+
+        @keyframes heroZoom {
+
+            from {
+                background-size: 108%;
+            }
+
+            to {
+                background-size: 100%;
+            }
+
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 80px 80px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                transparent,
+                black 30%,
+                black 80%,
+                transparent
+            );
+
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: min(1200px, 90%);
+            margin: 0 auto;
+
+            padding: 150px 0 100px;
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+
+            color: var(--accent);
+
+            margin-bottom: 25px;
+
+            animation: fadeUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .project-hero h1 {
+            font-size: clamp(55px, 9vw, 145px);
+            line-height: 0.84;
+
+            letter-spacing: -0.055em;
+
+            margin: 0;
+
+            font-weight: 800;
+
+            max-width: 1000px;
+
+            animation: fadeUp 1s 0.15s ease forwards;
+            opacity: 0;
+        }
+
+        .project-hero h1 span {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.8);
+        }
+
+        .hero-subtitle {
+            max-width: 550px;
+
+            margin-top: 35px;
+
+            font-size: 16px;
+            line-height: 1.7;
+
+            color: rgba(255,255,255,0.72);
+
+            animation: fadeUp 1s 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 45px;
+
+            margin-top: 45px;
+
+            animation: fadeUp 1s 0.45s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-meta-item small {
+            display: block;
+
+            font-size: 9px;
+            letter-spacing: 0.18em;
+
+            color: rgba(255,255,255,0.45);
+
+            margin-bottom: 8px;
+        }
+
+        .hero-meta-item strong {
+            font-size: 13px;
+            letter-spacing: 0.08em;
+        }
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 35px;
+            right: 5vw;
+
+            z-index: 5;
+
+            font-size: 9px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+
+            color: rgba(255,255,255,0.5);
+
+            writing-mode: vertical-rl;
+
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,100% {
+                opacity: 0.35;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+        }
+
+        /* =========================================================
+           GENERAL SECTION
+        ========================================================= */
+
+        .section {
+            width: min(1200px, 90%);
+            margin: auto;
+
+            padding: 130px 0;
+        }
+
+        .section-label {
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            color: var(--accent);
+
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+
+            font-size: clamp(38px, 6vw, 75px);
+            line-height: 0.95;
+
+            letter-spacing: -0.045em;
+        }
+
+        .section-heading > p:last-child {
+            max-width: 600px;
+
+            margin-top: 30px;
+
+            color: var(--muted);
+
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* =========================================================
+           PROJECT INTRO
+        ========================================================= */
+
+        .intro-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+
+            align-items: start;
+        }
+
+        .intro-text {
+            color: #b8b8b8;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .intro-text strong {
+            color: white;
+        }
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+
+            margin-top: 80px;
+        }
+
+        .stat {
+            padding: 35px 25px;
+
+            border-right: 1px solid var(--line);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: clamp(30px, 4vw, 55px);
+            font-weight: 700;
+
+            letter-spacing: -0.04em;
+        }
+
+        .stat-label {
+            margin-top: 10px;
+
+            font-size: 9px;
+            letter-spacing: 0.18em;
+
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           EQUIPMENT CARDS
+        ========================================================= */
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 70px;
+        }
+
+        .equipment-card {
+            position: relative;
+
+            min-height: 260px;
+
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.08),
+                    rgba(255,255,255,0.015)
+                );
+
+            border: 1px solid var(--line);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.5s ease,
+                border-color 0.5s ease;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(215,255,63,0.5);
+        }
+
+        .equipment-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -60px;
+            bottom: -70px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            opacity: 0.05;
+
+            filter: blur(30px);
+        }
+
+        .equipment-number {
+            font-size: 10px;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+        }
+
+        .equipment-card h3 {
+            margin-top: 70px;
+
+            font-size: 25px;
+
+            letter-spacing: -0.02em;
+        }
+
+        .equipment-card p {
+            color: var(--muted);
+
+            line-height: 1.6;
+
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           GALLERY
+        ========================================================= */
+
+        .gallery {
+            margin-top: 75px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(12, 1fr);
+
+            gap: 18px;
+        }
+
+        .gallery-item {
+            position: relative;
+
+            overflow: hidden;
+
+            background: #111;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            min-height: 300px;
+        }
+
+        .gallery-item.large {
+            grid-column: span 8;
+        }
+
+        .gallery-item.small {
+            grid-column: span 4;
+        }
+
+        .gallery-item.full {
+            grid-column: span 12;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+
+            min-height: inherit;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform 1s cubic-bezier(.2,.7,.2,1),
+                filter 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.055);
+
+            filter: brightness(0.72);
+        }
+
+        .image-overlay {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.9),
+                    transparent
+                );
+
+            pointer-events: none;
+        }
+
+        .image-overlay span {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+
+            text-transform: uppercase;
+        }
+
+        .image-overlay h3 {
+            margin: 8px 0 0;
+
+            font-size: 25px;
+        }
+
+        /* =========================================================
+           FEATURE IMAGE
+        ========================================================= */
+
+        .feature-image {
+            position: relative;
+
+            width: 100%;
+            height: min(75vh, 750px);
+
+            overflow: hidden;
+
+            margin-top: 70px;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 1.5s ease;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.025);
+        }
+
+        .feature-caption {
+            position: absolute;
+
+            left: 35px;
+            bottom: 30px;
+
+            padding: 12px 18px;
+
+            background: rgba(0,0,0,0.75);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* =========================================================
+           PROCESS
+        ========================================================= */
+
+        .process {
+            margin-top: 80px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 50px;
+        }
+
+        .process-step {
+            border-top: 1px solid var(--line);
+
+            padding-top: 25px;
+        }
+
+        .process-step span {
+            font-size: 10px;
+            color: var(--accent);
+
+            letter-spacing: 0.15em;
+        }
+
+        .process-step h3 {
+            font-size: 24px;
+
+            margin: 25px 0 12px;
+        }
+
+        .process-step p {
+            color: var(--muted);
+
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           DARK RESULTS SECTION
+        ========================================================= */
+
+        .results-section {
+            background: #0c0c0c;
+
+            width: 100%;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .results-inner {
+            width: min(1200px, 90%);
+            margin: auto;
+
+            padding: 130px 0;
+        }
+
+        .result-highlight {
+            margin-top: 70px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .result-highlight h3 {
+            font-size: clamp(35px, 5vw, 65px);
+
+            line-height: 1;
+
+            letter-spacing: -0.05em;
+
+            margin: 0;
+        }
+
+        .result-highlight p {
+            color: var(--muted);
+
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           CTA
+        ========================================================= */
+
+        .contact {
+            width: min(1200px, 90%);
+
+            margin: auto;
+
+            padding: 150px 0;
+
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(45px, 8vw, 110px);
+
+            letter-spacing: -0.06em;
+
+            line-height: 0.9;
+
+            margin: 15px 0 50px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 16px 30px;
+
+            text-decoration: none;
+
+            font-size: 10px;
+
+            letter-spacing: 0.2em;
+
+            text-transform: uppercase;
+
+            transition: all 0.35s ease;
+        }
+
+        .button.primary {
+            background: var(--accent);
+            color: #050505;
+        }
+
+        .button.primary:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 40px rgba(215,255,63,0.15);
+        }
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(45px);
+
+            transition:
+                opacity 0.9s ease,
+                transform 0.9s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 0 25px;
+            }
+
+            .nav-project {
+                display: none;
+            }
+
+            .project-hero h1 {
+                font-size: 65px;
+            }
+
+            .hero-meta {
+                gap: 25px;
+                flex-wrap: wrap;
+            }
+
+            .section {
+                padding: 90px 0;
+            }
+
+            .intro-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat:nth-child(-n+2) {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large,
+            .gallery-item.small,
+            .gallery-item.full {
+                grid-column: span 1;
+            }
+
+            .gallery-item {
+                min-height: 280px;
+            }
+
+            .process {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .result-highlight {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .project-hero h1 {
+                font-size: 52px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .feature-image {
+                height: 55vh;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="navbar">
+
+    <a href="../index.html" class="brand">
+
+        <img
+            src="https://raw.githubusercontent.com/tantr2/Stravexor/ade4f31f7dde6264a6fb9c31afc5b6fdda590dd6/Logo/logo.png"
+            alt="STRAVEXOR">
+
+    </a>
+
+    <div class="nav-project">
+        PROJECT 01 / FIELD OPERATION
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header class="project-hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+
+        <p class="eyebrow">
+            STRAVEXOR / PROJECT 01 / PHUKET
+        </p>
+
+        <h1>
+            PHUKET<br>
+            <span>AERIAL MAPPING</span>
+        </h1>
+
+        <p class="hero-subtitle">
+
+            High-resolution construction site mapping
+            using the DJI Matrice 4TD, transforming aerial
+            imagery into actionable geospatial data.
+
+        </p>
+
+        <div class="hero-meta">
+
+            <div class="hero-meta-item">
+                <small>PLATFORM</small>
+                <strong>DJI MATRICE 4TD</strong>
+            </div>
+
+            <div class="hero-meta-item">
+                <small>OPERATION</small>
+                <strong>UAS MAPPING</strong>
+            </div>
+
+            <div class="hero-meta-item">
+                <small>LOCATION</small>
+                <strong>PHUKET, THAILAND</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+        SCROLL TO EXPLORE
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     PROJECT OVERVIEW
+========================================================= -->
+
+<section class="section reveal">
+
+    <div class="intro-layout">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                01 / PROJECT OVERVIEW
+            </p>
+
+            <h2>
+                FROM<br>
+                FLIGHT<br>
+                TO DATA.
+            </h2>
+
+        </div>
+
+        <div class="intro-text">
+
+            <p>
+                This STRAVEXOR operation focused on the
+                <strong>aerial mapping of a construction site
+                in Phuket, Thailand</strong>.
+            </p>
+
+            <p>
+                The mission used the
+                <strong>DJI Matrice 4TD</strong> to systematically
+                capture high-resolution aerial imagery across
+                the project area.
+            </p>
+
+            <p>
+                The captured imagery was subsequently processed
+                into detailed mapping outputs, allowing the
+                site to be viewed from both a conventional
+                <strong>2D aerial perspective</strong> and
+                a <strong>3D spatial perspective</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat">
+
+            <div class="stat-number">
+                01
+            </div>
+
+            <div class="stat-label">
+                Mapping Mission
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                4TD
+            </div>
+
+            <div class="stat-label">
+                DJI Matrice Platform
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                2D
+            </div>
+
+            <div class="stat-label">
+                Orthographic Data
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                3D
+            </div>
+
+            <div class="stat-label">
+                Spatial Reconstruction
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PLATFORM
+========================================================= -->
+
+<section class="section reveal">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            02 / FLIGHT SYSTEM
+        </p>
+
+        <h2>
+            THE<br>
+            PLATFORM
+        </h2>
+
+        <p>
+            The mission was carried out using the DJI Matrice 4TD,
+            providing an integrated aerial imaging platform suited
+            for detailed inspection and mapping operations.
+        </p>
+
+    </div>
+
+
+    <div class="equipment-grid">
+
+        <div class="equipment-card">
+
+            <div class="equipment-number">
+                01 / AIRCRAFT
+            </div>
+
+            <h3>
+                DJI MATRICE 4TD
+            </h3>
+
+            <p>
+                Compact enterprise UAS platform designed
+                for professional aerial data collection.
+            </p>
+
+        </div>
+
+
+        <div class="equipment-card">
+
+            <div class="equipment-number">
+                02 / IMAGING
+            </div>
+
+            <h3>
+                HIGH-RESOLUTION
+            </h3>
+
+            <p>
+                Detailed aerial imagery captured across
+                the construction environment.
+            </p>
+
+        </div>
+
+
+        <div class="equipment-card">
+
+            <div class="equipment-number">
+                03 / DATA
+            </div>
+
+            <h3>
+                GEOSPATIAL
+            </h3>
+
+            <p>
+                Image acquisition designed to support
+                spatial reconstruction and site analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN OPERATION IMAGE
+========================================================= -->
+
+<section class="section reveal">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            03 / FIELD OPERATION
+        </p>
+
+        <h2>
+            THE<br>
+            SITE
+        </h2>
+
+    </div>
+
+
+    <div class="feature-image">
+
+        <img
+            src="https://raw.githubusercontent.com/tantr2/Stravexor/211ae9fb1197589d6f9152ce48062e1bd1b414f8/projects/Project-1/Screenshot%202026-08-27%20180959.png"
+            alt="DJI Matrice 4TD construction site mapping result">
+
+        <div class="feature-caption">
+            Phuket Construction Site / Aerial Survey
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY
+========================================================= -->
+
+<section class="section reveal">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            04 / DATA PRODUCTS
+        </p>
+
+        <h2>
+            MAPPING<br>
+            OUTPUTS
+        </h2>
+
+        <p>
+            Multiple views of the captured environment provide
+            a more complete understanding of the construction site.
+        </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+        <!-- IMAGE 1 -->
+
+        <div class="gallery-item large">
+
+            <img
+                src="https://raw.githubusercontent.com/tantr2/Stravexor/211ae9fb1197589d6f9152ce48062e1bd1b414f8/projects/Project-1/Screenshot%202026-08-27%20235112.png"
+                alt="STRAVEXOR 3D and 2D aerial mapping output">
+
+            <div class="image-overlay">
+
+                <span>
+                    DATA PRODUCT / 01
+                </span>
+
+                <h3>
+                    3D SITE RECONSTRUCTION
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMAGE 2 -->
+
+        <div class="gallery-item small">
+
+            <img
+                src="https://raw.githubusercontent.com/tantr2/Stravexor/211ae9fb1197589d6f9152ce48062e1bd1b414f8/projects/Project-1/Screenshot%202026-08-26%20224812.png"
+                alt="Construction site orthographic mapping">
+
+            <div class="image-overlay">
+
+                <span>
+                    DATA PRODUCT / 02
+                </span>
+
+                <h3>
+                    ORTHO VIEW
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMAGE 3 -->
+
+        <div class="gallery-item full">
+
+            <img
+                src="https://raw.githubusercontent.com/tantr2/Stravexor/211ae9fb1197589d6f9152ce48062e1bd1b414f8/projects/Project-1/Screenshot%202026-08-27%20180959.png"
+                alt="High resolution aerial construction site imagery">
+
+            <div class="image-overlay">
+
+                <span>
+                    DATA PRODUCT / 03
+                </span>
+
+                <h3>
+                    HIGH-RESOLUTION AERIAL IMAGERY
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WORKFLOW
+========================================================= -->
+
+<section class="section reveal">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            05 / WORKFLOW
+        </p>
+
+        <h2>
+            FIELD<br>
+            TO MODEL
+        </h2>
+
+    </div>
+
+
+    <div class="process">
+
+
+        <div class="process-step">
+
+            <span>
+                STEP 01
+            </span>
+
+            <h3>
+                PLAN
+            </h3>
+
+            <p>
+                The project area and required mapping
+                outputs are established before flight.
+                Flight paths are designed to provide
+                systematic coverage of the site.
+            </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <span>
+                STEP 02
+            </span>
+
+            <h3>
+                CAPTURE
+            </h3>
+
+            <p>
+                The DJI Matrice 4TD acquires overlapping
+                aerial imagery across the construction
+                environment.
+            </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <span>
+                STEP 03
+            </span>
+
+            <h3>
+                PROCESS
+            </h3>
+
+            <p>
+                Captured imagery is processed into
+                geospatial products that can be used
+                for visualization and site analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RESULTS
+========================================================= -->
+
+<section class="results-section">
+
+    <div class="results-inner reveal">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                06 / RESULTS
+            </p>
+
+            <h2>
+                ONE SITE.<br>
+                MULTIPLE<br>
+                PERSPECTIVES.
+            </h2>
+
+        </div>
+
+
+        <div class="result-highlight">
+
+            <h3>
+                SEE THE<br>
+                SITE DIFFERENTLY.
+            </h3>
+
+            <div>
+
+                <p>
+                    The final mapping outputs provide a
+                    visual representation of the construction
+                    environment from both aerial and spatial
+                    perspectives.
+                </p>
+
+                <p>
+                    This allows project teams to better
+                    understand existing conditions and
+                    communicate site information using
+                    measurable digital data.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="contact reveal">
+
+    <p class="section-label">
+        STRAVEXOR / PROJECT 01
+    </p>
+
+    <h2>
+        MORE<br>
+        PROJECTS
+    </h2>
+
+    <a
+        href="../index.html#projects"
+        class="button primary">
+
+        VIEW OUR WORK
+
+    </a>
+
+</section>
+
+
+<!-- =========================================================
+     SCROLL ANIMATION
+========================================================= -->
+
+<script>
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+    const revealObserver =
+        new IntersectionObserver(
+
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+    revealElements.forEach(element => {
+
+        revealObserver.observe(element);
+
+    });
+
+
+    /* =========================================================
+       PARALLAX HERO
+    ========================================================= */
+
+    const hero =
+        document.querySelector(".project-hero");
+
+    window.addEventListener("scroll", () => {
+
+        const scroll =
+            window.scrollY;
+
+        if (scroll < window.innerHeight) {
+
+            hero.style.backgroundPosition =
+                `center ${scroll * 0.18}px`;
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
