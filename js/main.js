@@ -10,10 +10,10 @@
 const projects = [
 
     {
-        title: "TEST",
+        title: "HKT Construction Orthophoto Mapping",
         category: "MAPPING",
-        image: "assets/images/project-01.jpg",
-        link: "projects/project-01.html"
+        image: "projects/Project-1/Screenshot 2026-08-27 235112.png",
+        link: "projects/Project-1/project1.html"
     },
 
     {
